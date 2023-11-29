@@ -14,7 +14,11 @@ const CountrySlice = createSlice({
         error:'',
         selectCountry:''
     },
-    reducers:{},
+    reducers:{
+        modifCountry : (state, action) => {
+            state.selectCountry = action.payload
+        }
+    },
     extraReducers:(builder)=>{
         builder.addCase(getCountries.pending, (state, action)=> {
             state.loading = true
@@ -31,7 +35,7 @@ const CountrySlice = createSlice({
 })
 
 
-export const {} = CountrySlice.actions
+export const {modifCountry} = CountrySlice.actions
 export default CountrySlice.reducer
 
 
