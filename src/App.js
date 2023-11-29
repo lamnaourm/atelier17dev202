@@ -1,23 +1,25 @@
-import logo from './logo.svg';
+import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
+import { useEffect } from 'react';
+import { getCountries } from './redux/CountrySlice';
+import { getUniversities } from './redux/UniversitySlice';
+import ListCountry from './components/ListCountry';
+import DetailsCountry from './components/DetailsCountry';
+import ListUniversity from './components/ListUniversity';
 
 function App() {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getCountries())
+    dispatch(getUniversities())
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <ListCountry />
+      <DetailsCountry />
+      <ListUniversity />
     </div>
   );
 }
